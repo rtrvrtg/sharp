@@ -1001,6 +1001,7 @@ class PipelineWorker : public AsyncWorker {
             ->set("strip", !baton->withMetadata)
             ->set("tile_size", baton->tileSize)
             ->set("overlap", baton->tileOverlap)
+            ->set("suffix", baton->tileSuffix)
             ->set("container", baton->tileContainer)
             ->set("layout", baton->tileLayout)
           );
@@ -1278,6 +1279,7 @@ NAN_METHOD(pipeline) {
   // Tile output
   baton->tileSize = attrAs<int32_t>(options, "tileSize");
   baton->tileOverlap = attrAs<int32_t>(options, "tileOverlap");
+  baton->tileSuffix = attrAsStr(options, "tileSuffix");
   std::string tileContainer = attrAsStr(options, "tileContainer");
   if (tileContainer == "zip") {
     baton->tileContainer = VIPS_FOREIGN_DZ_CONTAINER_ZIP;

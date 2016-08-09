@@ -101,6 +101,7 @@ struct PipelineBaton {
   int extractChannel;
   int tileSize;
   int tileOverlap;
+  std::string tileSuffix;
   VipsForeignDzContainer tileContainer;
   VipsForeignDzLayout tileLayout;
 
@@ -165,6 +166,7 @@ struct PipelineBaton {
     extractChannel(-1),
     tileSize(256),
     tileOverlap(0),
+    tileSuffix(".jpeg"),
     tileContainer(VIPS_FOREIGN_DZ_CONTAINER_FS),
     tileLayout(VIPS_FOREIGN_DZ_LAYOUT_DZ) {
       background[0] = 0.0;

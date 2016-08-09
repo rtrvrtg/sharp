@@ -116,6 +116,7 @@ var Sharp = function(input, options) {
     withMetadataOrientation: -1,
     tileSize: 256,
     tileOverlap: 0,
+    tileSuffix: null,
     extractChannel: -1,
     // Function to notify of queue length changes
     queueListener: function(queueLength) {
@@ -429,6 +430,13 @@ Sharp.prototype.overlayWith = function(overlay, options) {
         this.options.overlayGravity = module.exports.gravity[options.gravity];
       } else {
         throw new Error('Unsupported overlay gravity ' + options.gravity);
+      }
+    }
+    if (isDefined(options.suffix)) {
+      if (isString(options.suffix) && !!options.suffix.match(/\.(jpg|jpeg|png)(\[[^\]+]\])?/)) {
+        this.options.tileSuffix = options.suffix;
+      } else {
+        throw new Error('Unsupported tile suffix ' + options.suffix);
       }
     }
   }
